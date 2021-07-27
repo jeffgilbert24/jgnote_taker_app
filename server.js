@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-//const fs = require("fs");
+const fs = require("fs");
 const app = express();
 
 
@@ -9,9 +9,9 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/'))
-);
+//app.get('/', (req, res) =>
+//  res.sendFile(path.join(__dirname, '/index.html/'))
+//);
 
 // required get notes returns notes.html
 app.get('/notes', (req, res) => {
