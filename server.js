@@ -34,32 +34,17 @@ app.get('/api/notes', (req, res) => {
 
 //post/api/notes recieves a new note to save
 app.post('/api/notes',(req, res)=>{
-    newNote = req.body;
+    takeNote = req.body;
+
 fs.readFile(__dirname + "/db/db.json", (err, data)=>{
     var json = JSON.parse(data);
 // new note
-json.push(newNote);
+json.push(takeNote);
+fs.writeFileSync(__dirname +'db/db.json', JSON.stringify(json));
+});
+});
 
 
-//create a note and add to JSON file
-app.post("/api/notes", async function (req, res) {
-    class NewNote {
-      constructor(id, title, text) {
-        this.id = id;
-        this.title = title;
-        this.text = text;
-      }
-    }
-    let noteList = [];
-    let newNote = new NewNote(uuid.v4(), req.body.title, req.body.text);
-    //   console.log("NEWNOTE: ", newNote);
-    noteList = readNoteList;
-    noteList.push(newNote);
-    //   console.log("NOTE ARRAY: ", noteList);
-    fs.writeFileSync(dbFile, JSON.stringify(noteList));
-    console.log("Successfully added new note...");
-    res.send({ message: "added note..." });
-  });
 
 
 
